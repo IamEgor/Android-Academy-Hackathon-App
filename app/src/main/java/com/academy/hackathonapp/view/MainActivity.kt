@@ -10,8 +10,6 @@ import com.academy.hackathonapp.data.model.Error
 import com.academy.hackathonapp.data.model.Users
 import com.academy.hackathonapp.mvvm.Status
 import com.academy.hackathonapp.mvvm.viewModel.ActivityViewModel
-import com.academy.hackathonapp.tempsnippets.GoogleSignInFragment
-import com.academy.hackathonapp.tempsnippets.MainFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -27,11 +25,6 @@ class MainActivity : AppCompatActivity() {
 
         buttonOneClickListener()
         buttonTwoClickListener()
-
-
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.layout_container, MainFragment())
-            .commitAllowingStateLoss()
     }
 
     private fun observeGetPosts() {
