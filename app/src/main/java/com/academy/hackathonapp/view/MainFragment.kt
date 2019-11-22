@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.academy.hackathonapp.R
@@ -13,40 +14,46 @@ import com.academy.hackathonapp.mvvm.viewModel.FragmentViewModel.Companion.State
 import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment: Fragment() {
-
+    lateinit var fragmentViewModel:FragmentViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.temp_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        var fragmentViewModel = ViewModelProviders.of(this).get(FragmentViewModel::class.java)
+        fragmentViewModel = ViewModelProviders.of(this).get(FragmentViewModel::class.java)
         fragmentViewModel.lv.observe(viewLifecycleOwner, Observer {
             when(it){
-               StateChart.PieChart->{}
-               StateChart.ListChart->{}
+               StateChart.PieChart->{
+                  fragmentManager?.beginTransaction()?.replace(layout_container.id,PieFragment())?.commit()
+               }
+               StateChart.ListChart->{
+
+               }
             }
         })
+        setListeners()
     }
 
     fun setListeners(){
         txtList.setOnClickListener { v ->
             run {
-                fragmentManager?.beginTransaction()?.replace(layout.id,ListFragment())?.commit()
+                fragmentViewModel.changeToListChartState()
             }
         }
 
         txtPie.setOnClickListener { v ->
             run {
-                fragmentManager?.beginTransaction()?.replace(layout.id,PieFragment())?.commit()
+                fragmentViewModel.changeToPieChartState()
             }
         }
-
     }
+
+
 
 
 }

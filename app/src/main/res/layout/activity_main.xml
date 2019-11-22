@@ -16,11 +16,7 @@
 
         />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/linLay"
-        android:orientation="horizontal" />
+
 
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:tools="http://schemas.android.com/tools"
@@ -29,7 +25,11 @@
     android:layout_height="match_parent"
     android:id="@+id/drawer"
     tools:context=".view.MainActivity">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linLay"
+        android:orientation="horizontal" />
 
 
     <com.google.android.material.navigation.NavigationView
