@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Hackathon App</string>
+    <string name="main_screen">Main screen</string>
+    <string name="categories">Categories</string>
+    <string name="planning_spending">Planning of spending</string>
+    <string name="settings">Settings</string>
+    <string name="user">User</string>
 </resources>
