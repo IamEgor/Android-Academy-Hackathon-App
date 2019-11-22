@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<group android:checkableBehavior="single">
+    <item
+        android:id="@+id/main_screen"
+        android:icon="@drawable/ic_airplay_black"
+        android:title="@string/main_screen"
+        />
+    <item
+        android:id="@+id/categories"
+        android:icon="@drawable/ic_group_black"
+        android:title="@string/categories"
+        />
+    <item
+        android:id="@+id/planning"
+        android:icon="@drawable/ic_sentiment_neutral_black"
+        android:title="@string/planning_spending"
+        />
+</group>
+    <item android:title="@string/settings">
+        <menu>
+            <item
+                android:id="@+id/settings"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="@string/settings"/>
+        </menu>
+
+    </item>
+</menu>
