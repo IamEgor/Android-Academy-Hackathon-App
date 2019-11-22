@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(com.academy.hackathonapp.R.layout.activity_main)
 
         activityViewModel = ViewModelProviders.of(this).get(ActivityViewModel::class.java)
-
+        supportFragmentManager.beginTransaction().replace(linLay.id,MainFragment()).commit()
 
         drawer.closeDrawer(GravityCompat.START)
         setSupportActionBar(my_toolbar)
@@ -41,5 +41,6 @@ class MainActivity : AppCompatActivity() {
         else drawer.openDrawer(GravityCompat.START)
         return super.onOptionsItemSelected(item)
     }
+
 
 }
