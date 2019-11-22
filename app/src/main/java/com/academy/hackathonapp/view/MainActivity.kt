@@ -10,7 +10,8 @@ import com.academy.hackathonapp.data.model.Error
 import com.academy.hackathonapp.data.model.Users
 import com.academy.hackathonapp.mvvm.Status
 import com.academy.hackathonapp.mvvm.viewModel.ActivityViewModel
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.btn_test_one
+import kotlinx.android.synthetic.main.activity_main.btn_test_two
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,7 +38,6 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-
     private fun buttonOneClickListener() {
         btn_test_one.setOnClickListener {
             activityViewModel.getUsers()
@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun viewOneLoading() {
-
     }
 
     private fun viewOneSuccess(data: Any?) {
@@ -70,15 +69,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun viewOneError(error: Error?) {
-
     }
 
     private fun viewTwoLoading() {
-
     }
 
     private fun viewTwoSuccess(data: Users?) {
-
     }
 
     private fun viewTwoError(error: Error?) {

@@ -1,4 +1,4 @@
-package com.academy.hackathonapp.tempsnippets
+package com.academy.hackathonapp.view.intro.signup
 
 import android.app.Activity
 import android.content.Intent
@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.academy.hackathonapp.R
+import com.academy.hackathonapp.view.intro.IntroActivity
+import com.academy.hackathonapp.view.intro.IntroActivity.OnNextClickListener
 import com.ammarptn.gdriverest.DriveServiceHelper
 import com.ammarptn.gdriverest.DriveServiceHelper.getGoogleDriveService
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -19,12 +21,17 @@ import com.google.android.gms.drive.Drive.SCOPE_FILE
 import com.google.gson.Gson
 import java.io.File
 
-class GoogleSignInFragment : Fragment() {
+class GoogleSignInFragment : Fragment(), OnNextClickListener {
+    override fun onClickNext(activity: IntroActivity) {
+        activity.pager.goToNextSlide()
+    }
 
     companion object {
         private const val REQUEST_CODE_SIGN_IN = 110
         private const val TAG = "GoogleSignInFragment"
         private const val APP_NAME = "HackathonApp"
+        @JvmStatic
+        fun newInstance() = GoogleSignInFragment()
     }
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -86,7 +93,10 @@ class GoogleSignInFragment : Fragment() {
 
     private fun signIn() {
         mGoogleSignInClient = buildGoogleSignInClient()
-        startActivityForResult(mGoogleSignInClient.signInIntent, REQUEST_CODE_SIGN_IN)
+        startActivityForResult(
+            mGoogleSignInClient.signInIntent,
+            REQUEST_CODE_SIGN_IN
+        )
     }
 
     private fun buildGoogleSignInClient(): GoogleSignInClient {
