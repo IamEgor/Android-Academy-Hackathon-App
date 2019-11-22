@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/colorPrimary"
+	tools:context=".view.intro.money.MoneyFragment"
+	>
+
+    <!-- TODO: Update blank fragment layout -->
+	<TextView
+		android:id="@+id/tv_enter_salary"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="50dp"
+		android:gravity="center"
+		android:padding="20dp"
+		android:text="How much money you plan to spend per month?"
+		android:textColor="@color/white"
+		android:textSize="30sp"
+		android:textStyle="bold"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		/>
+	
+	<cn.carbswang.android.numberpickerview.library.NumberPickerView
+		android:id="@+id/currencyPicker"
+		style="@style/Picker"
+		android:layout_width="85dp"
+		android:layout_height="wrap_content"
+		app:layout_constraintBottom_toBottomOf="@id/et_salary"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toEndOf="@id/et_salary"
+		app:layout_constraintTop_toTopOf="@id/et_salary"
+		>
+		
+		
+	</cn.carbswang.android.numberpickerview.library.NumberPickerView>
+	
+	<com.google.android.material.textfield.TextInputEditText
+		android:id="@+id/et_salary"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="30dp"
+		android:inputType="number"
+		android:textColor="@color/white"
+		android:textSize="30sp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toStartOf="@id/currencyPicker"
+		app:layout_constraintStart_toStartOf="parent"
+		android:backgroundTint="@color/white"
+		app:layout_constraintTop_toBottomOf="@id/tv_enter_salary"
+		/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Hackathon App</string>
+	<string name="salary_tittle">Enter your salary</string>
+	
+	<string name="category_stub">Check category</string>
     <string name="main_screen">Main screen</string>
     <string name="categories">Categories</string>
     <string name="planning_spending">Planning of spending</string>
