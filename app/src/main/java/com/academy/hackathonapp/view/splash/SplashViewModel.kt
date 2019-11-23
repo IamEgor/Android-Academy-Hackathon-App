@@ -20,6 +20,8 @@ import kotlinx.coroutines.launch
 class SplashViewModel : BaseViewModel() {
 
     private val TAG = "SplashViewModel"
+    private val listOf = listOf("BYN", "RUB", "USD", "EUR")
+
     private val api = NetworkService.retrofitService()
     var data = MutableLiveData<Event<Any>>()
 
@@ -27,15 +29,17 @@ class SplashViewModel : BaseViewModel() {
 
         val curs = CurrenciesDto(
             listOf(
-                CurrencyDto(curID = 1L, abbr = "BYN"),
-                CurrencyDto(curID = 2L, abbr = "RUB"),
-                CurrencyDto(curID = 5L, abbr = "USD"),
-                CurrencyDto(curID = 6L, abbr = "EUR")
+                CurrencyDto(curID = 1L, abbr = "BYN", curCode = "", scale = 1),
+                CurrencyDto(curID = 2L, abbr = "RUB", curCode = "", scale = 1),
+                CurrencyDto(curID = 5L, abbr = "USD", curCode = "", scale = 1),
+                CurrencyDto(curID = 6L, abbr = "EUR", curCode = "", scale = 1)
             )
         )
 
+
         viewModelScope.launch(Dispatchers.IO) {
-            DataStorage.createCurrencyRepository().saveCurrencyList(CurrencyMapper().map(curs))
+            DataStorage.createCurrencyRepository()
+                .saveCurrencyList(CurrencyMapper().map(curs).filter { listOf.contains(it.name) })
         }
         viewModelScope.launch(Dispatchers.IO) {
             Log.d(TAG, "doMagic: category created")

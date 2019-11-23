@@ -7,6 +7,10 @@ import com.squareup.moshi.JsonClass
 data class CurrencyDto(
     @Json(name = "Cur_ID")
     val curID: Long,
+    @Json(name = "Cur_Code")
+    val curCode: String,
     @Json(name = "Cur_Abbreviation")
-    val abbr: String
+    val abbr: String,
+    @Json(name = "Cur_Scale")
+    val scale: Int
 )

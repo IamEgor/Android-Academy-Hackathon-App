@@ -1,8 +1,8 @@
 package com.academy.hackathonapp.mvvm
 
-import com.academy.hackathonapp.data.model.Error
+import java.lang.Exception
 
-data class Event<out T>(val status: Status, val data: T?, val error: Error?) {
+data class Event<out T>(val status: Status, val data: T?, val error: Exception?) {
 
     companion object {
         fun <T> loading(): Event<T> {
@@ -13,7 +13,7 @@ data class Event<out T>(val status: Status, val data: T?, val error: Error?) {
             return Event(Status.SUCCESS, data, null)
         }
 
-        fun <T> error(error: Error?): Event<T> {
+        fun <T> error(error: Exception?): Event<T> {
             return Event(Status.ERROR, null, error)
         }
     }
