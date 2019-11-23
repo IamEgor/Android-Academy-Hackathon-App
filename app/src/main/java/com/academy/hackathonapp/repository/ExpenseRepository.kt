@@ -2,7 +2,7 @@ package com.academy.hackathonapp.repository
 
 import com.academy.hackathonapp.db.ExpenseDao
 import com.academy.hackathonapp.db.model.Expense
-import com.example.myapplication.data.Category
+import com.academy.hackathonapp.db.model.Category
 
 class ExpenseRepository(private val expenseDao: ExpenseDao) {
 

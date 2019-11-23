@@ -10,5 +10,6 @@ import kotlinx.android.parcel.Parcelize
 class Currency(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    var name: String = ""
+    var name: String = "",
+    var curID: Long = 0
 ) : Parcelable

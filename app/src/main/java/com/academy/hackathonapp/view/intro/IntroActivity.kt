@@ -10,20 +10,15 @@ import com.pixplicity.easyprefs.library.Prefs
 
 class IntroActivity : AppIntro() {
 
-    private var isFirstLoading: Boolean = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        checkForFirstLoading()
+
         setupIntro()
     }
 
-    private fun checkForFirstLoading() {
-        isFirstLoading = Prefs.getBoolean("is_first_launch", false)
-        if (isFirstLoading) {
-//            onDonePressed()
-        }
-    }
+
 
     private fun setupIntro() {
         showSkipButton(false)
@@ -42,7 +37,6 @@ class IntroActivity : AppIntro() {
 
     override fun onDonePressed() {
         super.onDonePressed()
-        Prefs.putBoolean("is_first_launch", true)
         startActivity(Intent(this, MainActivity::class.java))
     }
 

@@ -12,6 +12,18 @@ object DataStorage {
         createDatabase()
     }
 
+    val categoryRepository by lazy {
+        createCategoryRepository()
+    }
+
+    val expenseRepository by lazy {
+        createExpenseRepository()
+    }
+
+    val currencyRepository by lazy {
+        createCurrencyRepository()
+    }
+
     private fun createDatabase(): AppDatabase {
         return Room.databaseBuilder(
             App.instance,
@@ -27,9 +39,7 @@ object DataStorage {
         return ExpenseRepository(database.expenseDao())
     }
 
-    fun creteCurrencyRepository(): CurrencyRepository {
+    fun createCurrencyRepository(): CurrencyRepository {
         return CurrencyRepository(database.currencyDao())
     }
-
-
 }
