@@ -6,7 +6,7 @@ import com.academy.hackathonapp.db.model.Category
 
 class ExpenseRepository(private val expenseDao: ExpenseDao) {
 
-    fun getAllCategories(): List<Expense> {
+    fun getAllExpenses(): List<Expense> {
         return expenseDao.getAll()
     }
 

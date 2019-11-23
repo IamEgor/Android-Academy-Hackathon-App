@@ -1,4 +1,4 @@
-package com.academy.hackathonapp.view
+package com.academy.hackathonapp.view.spending
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,22 +6,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.academy.hackathonapp.R
-import java.io.Serializable
-import java.math.BigDecimal
+import com.academy.hackathonapp.R.layout
+import com.academy.hackathonapp.db.model.Expense
+import com.academy.hackathonapp.dependency.DataStorage
+import com.academy.hackathonapp.view.spending.SpentItemsAdapter.ItemsHolder
 
-data class SpentItems(
-    val category: String,
-    val date: BigDecimal,
-    val sum: Long,
-    val currency: String
-) : Serializable
-
-fun getItems(): List<SpentItems> {
-    TODO("Get data from the table")
-}
-
-class SpentItemsAdapter(private val items: List<SpentItems>) :
-    RecyclerView.Adapter<SpentItemsAdapter.ItemsHolder>() {
+class SpentItemsAdapter(private var items: List<Expense>) :
+    RecyclerView.Adapter<ItemsHolder>() {
 
     override fun onBindViewHolder(holder: ItemsHolder, position: Int) {
         holder.bind(items[position])
@@ -31,8 +22,19 @@ class SpentItemsAdapter(private val items: List<SpentItems>) :
         return items.size
     }
 
+    fun setItems(newItems: List<Expense>){
+        items = newItems
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ItemsHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false))
+        ItemsHolder(
+            LayoutInflater.from(parent.context).inflate(
+                layout.list_item,
+                parent,
+                false
+            )
+        )
 
     class ItemsHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val category: TextView = itemView.findViewById(R.id.category_name)
@@ -40,11 +42,11 @@ class SpentItemsAdapter(private val items: List<SpentItems>) :
         private val sum: TextView = itemView.findViewById(R.id.item_sum)
         private val currency: TextView = itemView.findViewById(R.id.item_currency)
 
-        fun bind(item: SpentItems) {
-            category.text = item.category
+        fun bind(item: Expense) {
+            category.text = item.category?.categoryName
             date.text = item.date.toString()
-            sum.text = item.sum.toString()
-            currency.text = item.currency
+            sum.text = item.expenseSum.toString()
+            currency.text = item.currency?.name
         }
     }
 }
