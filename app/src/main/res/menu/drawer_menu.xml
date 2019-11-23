@@ -12,11 +12,6 @@
         android:icon="@drawable/ic_group_black"
         android:title="@string/categories"
         />
-    <item
-        android:id="@+id/planning"
-        android:icon="@drawable/ic_sentiment_neutral_black"
-        android:title="@string/planning_spending"
-        />
 </group>
     <item android:title="@string/settings">
         <menu>

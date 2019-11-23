@@ -3,6 +3,7 @@ package com.academy.hackathonapp.category
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.academy.hackathonapp.R
@@ -33,10 +34,13 @@ class CategoryAdapter(var categories: List<Category>) :
     ) : RecyclerView.ViewHolder(itemView) {
 
         private val title: TextView = itemView.findViewById(R.id.category_name)
+        private val image: ImageView = itemView.findViewById(R.id.category_icon)
 
 
         fun bind(category: Category) {
+            image.setImageResource(category.img)
             title.text = category.categoryName
+
         }
     }
 }

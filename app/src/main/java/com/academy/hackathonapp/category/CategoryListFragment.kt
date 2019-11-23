@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.academy.hackathonapp.R
 import com.academy.hackathonapp.dependency.DataStorage
 import com.academy.hackathonapp.mvvm.viewModel.CategoryViewModel
+import com.academy.hackathonapp.view.MainActivity
 import kotlinx.android.synthetic.main.category_list_fragment.*
 
 
@@ -18,11 +19,9 @@ class CategoryListFragment : Fragment() {
     private lateinit var internalAdapter: CategoryAdapter
     private lateinit var viewModel: CategoryViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
         viewModel = ViewModelProviders.of(
             this,
             CategoryViewModel.CategoryViewModelFactory(
@@ -41,6 +40,7 @@ class CategoryListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         internalAdapter = CategoryAdapter(emptyList())
         viewModel.categoryList.observe(this, Observer { categories ->
             internalAdapter.categories = categories
@@ -49,8 +49,10 @@ class CategoryListFragment : Fragment() {
         categoryList.apply {
             adapter = internalAdapter
         }
-
-
+        val activity = activity as MainActivity
+        add_category.setOnClickListener {
+            activity.showFragment(AddCategoryFragment())
+        }
     }
 
 
