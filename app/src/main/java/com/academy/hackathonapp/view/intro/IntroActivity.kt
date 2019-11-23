@@ -2,23 +2,45 @@ package com.academy.hackathonapp.view.intro
 
 import android.content.Intent
 import android.os.Bundle
+import com.academy.hackathonapp.dependency.DataStorage
 import com.academy.hackathonapp.view.MainActivity
 import com.academy.hackathonapp.view.intro.money.MoneyFragment
 import com.academy.hackathonapp.view.intro.signup.GoogleSignInFragment
+import com.example.myapplication.data.Category
 import com.github.paolorotolo.appintro.AppIntro
 import com.pixplicity.easyprefs.library.Prefs
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class IntroActivity : AppIntro() {
 
-
+    private var isFirstLoading: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        checkForFirstLoading()
         setupIntro()
     }
 
+    private fun checkForFirstLoading() {
+        isFirstLoading = Prefs.getBoolean("is_first_launch", false)
+        if (isFirstLoading) {
+            GlobalScope.launch(Dispatchers.IO) {
+                DataStorage.categoryRepository.addCategories(getDefaultCategories())
 
+            }
+        }
+    }
+
+    private fun getDefaultCategories(): List<Category> {
+        return listOf(
+            Category(1, "Food and Drinks"),
+            Category(2, "Health"),
+            Category(3, "Shopping"),
+            Category(4, "Utilities")
+        )
+    }
 
     private fun setupIntro() {
         showSkipButton(false)
@@ -28,7 +50,6 @@ class IntroActivity : AppIntro() {
     private fun addSlides() {
         addSlide(GoogleSignInFragment.newInstance())
         addSlide(MoneyFragment.newInstance())
-//        addSlide(CategoryChooserFragment.newInstance())
     }
 
     interface OnNextClickListener {
