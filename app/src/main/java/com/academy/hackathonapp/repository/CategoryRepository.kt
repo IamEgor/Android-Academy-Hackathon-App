@@ -10,6 +10,10 @@ class CategoryRepository(
         return categoryDao.getAll()
     }
 
+    fun getAllNameCategories(): List<String> {
+        return categoryDao.getAllNames()
+    }
+
     fun addCategory(category: Category) {
         categoryDao.insert(category)
     }

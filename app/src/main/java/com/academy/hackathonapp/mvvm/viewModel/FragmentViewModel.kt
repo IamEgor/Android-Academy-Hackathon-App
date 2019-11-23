@@ -19,10 +19,17 @@ class FragmentViewModel: ViewModel() {
 
     }
 
+    fun changeToAddChartState(){
+        if (stateLiveData.value!=StateChart.ToAdd) stateLiveData.value=StateChart.ToAdd
+
+    }
+
+
 companion object {
     sealed class StateChart() {
         object PieChart : StateChart()
         object ListChart : StateChart()
+        object ToAdd : StateChart()
     }
 }
 

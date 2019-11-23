@@ -32,7 +32,11 @@ class MainFragment: Fragment() {
                   fragmentManager?.beginTransaction()?.replace(layout_container.id,PieFragment())?.commit()
                }
                StateChart.ListChart->{
-                   fragmentManager?.beginTransaction()?.replace(layout_container.id, SpendingListFragment())?.commit()
+                   fragmentManager?.beginTransaction()?.replace(layout_container.id,SpendingListFragment())?.commit()
+               }
+
+               StateChart.ToAdd->{
+                    fragmentManager?.beginTransaction()?.replace(layout_container.id,AddingSpendingFragment())?.commit()
                }
             }
         })
@@ -51,9 +55,11 @@ class MainFragment: Fragment() {
                 fragmentViewModel.changeToPieChartState()
             }
         }
+        fab.setOnClickListener { v ->
+            run {
+                fragmentViewModel.changeToAddChartState()
+            }
+        }
     }
-
-
-
 
 }
