@@ -4,7 +4,6 @@ import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.myapplication.data.Category
 import kotlinx.android.parcel.Parcelize
 import java.math.BigDecimal
 

@@ -1,7 +1,7 @@
 package com.academy.hackathonapp.repository
 
 import com.academy.hackathonapp.db.CategoryDao
-import com.example.myapplication.data.Category
+import com.academy.hackathonapp.db.model.Category
 
 class CategoryRepository(
     private val categoryDao: CategoryDao

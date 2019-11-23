@@ -15,8 +15,8 @@ class MoneyViewModel : ViewModel() {
         Prefs.putString("default_currency", currencyToSave)
     }
 
-    fun saveBalance(money: Int) {
+    fun saveBalance(money: Int?) {
         Log.d(TAG, "saveBalance: $money")
-        Prefs.putInt("balance", money)
+        Prefs.putInt("balance", money ?: 0)
     }
 }

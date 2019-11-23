@@ -10,7 +10,7 @@ import com.academy.hackathonapp.db.ExpenseDao
 import com.academy.hackathonapp.db.TestDatabase
 import com.academy.hackathonapp.db.model.Currency
 import com.academy.hackathonapp.db.model.Expense
-import com.example.myapplication.data.Category
+import com.academy.hackathonapp.db.model.Category
 import org.junit.After
 import org.junit.Assert.assertTrue
 import org.junit.Before

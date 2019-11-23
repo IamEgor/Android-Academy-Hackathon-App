@@ -5,7 +5,7 @@ import okhttp3.Interceptor.Companion.invoke
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 object NetworkService {
 
@@ -26,26 +26,26 @@ object NetworkService {
             .build()
 
         val request = chain
-                .request()
-                .newBuilder()
-                .url(newUrl)
-                .build()
+            .request()
+            .newBuilder()
+            .url(newUrl)
+            .build()
 
         return@invoke chain.proceed(request)
     }
 
     private val client: OkHttpClient = OkHttpClient
-            .Builder()
-            .addInterceptor(loggingInterceptor)
-            .addInterceptor(baseInterceptor)
-            .build()
+        .Builder()
+        .addInterceptor(loggingInterceptor)
+        .addInterceptor(baseInterceptor)
+        .build()
 
     fun retrofitService(): Api {
         return Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
-                .create(Api::class.java)
+            .baseUrl(BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .client(client)
+            .build()
+            .create(Api::class.java)
     }
 }

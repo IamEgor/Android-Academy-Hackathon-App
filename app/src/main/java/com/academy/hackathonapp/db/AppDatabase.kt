@@ -9,7 +9,7 @@ import com.academy.hackathonapp.db.CurrencyDao
 import com.academy.hackathonapp.db.ExpenseDao
 import com.academy.hackathonapp.db.model.Currency
 import com.academy.hackathonapp.db.model.Expense
-import com.example.myapplication.data.Category
+import com.academy.hackathonapp.db.model.Category
 
 @Database(
     entities = [Category::class, Expense::class, Currency::class],

@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.academy.hackathonapp.db.model.Currency
 import com.academy.hackathonapp.db.model.Expense
-import com.example.myapplication.data.Category
+import com.academy.hackathonapp.db.model.Category
 
 @Database(
     entities = [Category::class, Expense::class, Currency::class],
@@ -14,6 +14,7 @@ import com.example.myapplication.data.Category
 )
 @TypeConverters(Converters::class)
 abstract class TestDatabase : RoomDatabase() {
+
     abstract fun categoryDao(): CategoryDao
     abstract fun expenseDao(): ExpenseDao
     abstract fun currencyDao(): CurrencyDao
