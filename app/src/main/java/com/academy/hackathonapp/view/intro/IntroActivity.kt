@@ -2,11 +2,11 @@ package com.academy.hackathonapp.view.intro
 
 import android.content.Intent
 import android.os.Bundle
+import com.academy.hackathonapp.db.model.Category
 import com.academy.hackathonapp.dependency.DataStorage
 import com.academy.hackathonapp.view.MainActivity
 import com.academy.hackathonapp.view.intro.money.MoneyFragment
 import com.academy.hackathonapp.view.intro.signup.GoogleSignInFragment
-import com.example.myapplication.data.Category
 import com.github.paolorotolo.appintro.AppIntro
 import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.coroutines.Dispatchers
