@@ -37,16 +37,18 @@ class SpentItemsAdapter(private var items: List<Expense>) :
         )
 
     class ItemsHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val category: TextView = itemView.findViewById(R.id.category_name)
+        private val category: TextView = itemView.findViewById(R.id.item_category_name)
         private val date: TextView = itemView.findViewById(R.id.item_data)
         private val sum: TextView = itemView.findViewById(R.id.item_sum)
         private val currency: TextView = itemView.findViewById(R.id.item_currency)
+        private val description: TextView = itemView.findViewById(R.id.item_description)
 
         fun bind(item: Expense) {
             category.text = item.category?.categoryName
             date.text = item.date.toString()
             sum.text = item.expenseSum.toString()
             currency.text = item.currency?.name
+            description.text = item.description
         }
     }
 }
