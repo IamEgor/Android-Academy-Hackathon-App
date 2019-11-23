@@ -6,24 +6,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.academy.hackathonapp.R
+import com.academy.hackathonapp.db.model.Expense
 import java.io.Serializable
 import java.math.BigDecimal
 
-data class SpentItems  (
-    val category: String,
-    val date: BigDecimal,
-    val sum: Long,
-    val currency: String): Serializable
-
-fun getItems(): List<SpentItems> {
-TODO("Get data from the table")
-}
-
-class SpentItemsAdapter (private val items: List<SpentItems>) :
+class SpentItemsAdapter (private val items: List<Expense>) :
     RecyclerView.Adapter<SpentItemsAdapter.ItemsHolder>() {
     override fun onBindViewHolder(holder: ItemsHolder, position: Int) {
         holder.bind(items[position])
-
     }
 
     override fun getItemCount(): Int {
@@ -35,16 +25,16 @@ class SpentItemsAdapter (private val items: List<SpentItems>) :
 
 
     class ItemsHolder (view: View) : RecyclerView.ViewHolder(view) {
-        private val category: TextView = itemView.findViewById(R.id.category_name)
-        private val date: TextView = itemView.findViewById(R.id.item_data)
-        private val sum: TextView = itemView.findViewById(R.id.item_sum)
-        private val currency: TextView = itemView.findViewById(R.id.item_currency)
+        private val category: TextView = view.findViewById(R.id.category_name)
+        private val date: TextView = view.findViewById(R.id.item_data)
+        private val sum: TextView = view.findViewById(R.id.item_sum)
+        private val currency: TextView = view.findViewById(R.id.item_currency)
 
-        fun bind(item: SpentItems) {
-            category.text = item.category
+        fun bind(item: Expense) {
+            category.text = item.currency.toString()
             date.text = item.date.toString()
-            sum.text = item.sum.toString()
-            currency.text = item.currency
+            sum.text = item.expenseSum.toString()
+            currency.text = item.currency.toString()
         }
 
     }

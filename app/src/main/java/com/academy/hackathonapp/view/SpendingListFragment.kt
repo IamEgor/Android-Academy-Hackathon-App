@@ -8,6 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.academy.hackathonapp.R
+import com.academy.hackathonapp.dependency.DataStorage
+import kotlinx.android.synthetic.main.spending_list_fragment.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SpendingListFragment : Fragment() {
 
@@ -16,12 +22,14 @@ class SpendingListFragment : Fragment() {
                               savedInstanceState: Bundle?) : View {
 
         val view = inflater.inflate(R.layout.list_item, container, false)
-        val list = view.findViewById<RecyclerView>(R.id.recycler_spending_list)
-        val items = getItems()
-        val adapter = SpentItemsAdapter(items)
-        list.adapter = adapter
-        list.layoutManager = LinearLayoutManager(getActivity())
 
+        GlobalScope.launch(Dispatchers.IO) {
+            val items = DataStorage.expenseRepository.getAllCategories()
+            withContext(Dispatchers.Main){
+                recycler_spending_list.adapter = SpentItemsAdapter(items)
+                recycler_spending_list.layoutManager = LinearLayoutManager(this@SpendingListFragment.context)
+            }
+        }
         return view
     }
 }

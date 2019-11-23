@@ -7,21 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.academy.hackathonapp.R
 
-class ListFragment:Fragment() {
-
+class AddingSpendingFragment: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_list_spendings, container, false)
+        return inflater.inflate(R.layout.adding_item_fragment, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        /*make adapter, recyclerView*/
 
 
-    }
 
 }
