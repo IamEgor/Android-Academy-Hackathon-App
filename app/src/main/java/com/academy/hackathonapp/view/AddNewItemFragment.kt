@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.academy.hackathonapp.R
 import com.academy.hackathonapp.db.model.Category
@@ -65,10 +66,13 @@ class AddNewItemFragment : Fragment() {
                     DataStorage.expenseRepository.addExpense(expense)
                 }
 
+            view.findViewById<EditText>(sumSpend.id).setText("")
+              input_description.setText("")
             }
         }
 
 
     }
+
 
 }
