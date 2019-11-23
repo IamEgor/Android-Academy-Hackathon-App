@@ -21,4 +21,8 @@ class CategoryRepository(
     fun addCategories(categories: List<Category>) {
         categoryDao.insertAll(categories)
     }
+
+    fun getByName(name: String): Category {
+        return categoryDao.getByName(name)
+    }
 }
