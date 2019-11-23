@@ -55,6 +55,22 @@
 		app:layout_constraintTop_toBottomOf="@id/iv_google"
 		/>
 	
+	<TextView
+		android:id="@+id/sign_tv"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="50dp"
+		android:backgroundTint="@color/colorAccent"
+		android:text="Sign in"
+		android:textSize="25sp"
+		android:visibility="gone"
+		app:layout_constraintEnd_toEndOf="parent"
+		android:textColor="@color/white"
+		android:textStyle="italic"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/iv_google"
+		/>
+	
 	<ImageView
 		android:id="@+id/iv_google"
 		android:layout_width="300dp"

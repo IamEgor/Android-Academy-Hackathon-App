@@ -12,14 +12,13 @@ import androidx.fragment.app.Fragment
 import com.academy.hackathonapp.R
 import com.academy.hackathonapp.view.intro.IntroActivity
 import com.academy.hackathonapp.view.intro.IntroActivity.OnNextClickListener
-import com.ammarptn.gdriverest.DriveServiceHelper
-import com.ammarptn.gdriverest.DriveServiceHelper.getGoogleDriveService
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.drive.Drive.SCOPE_FILE
-import com.google.gson.Gson
-import java.io.File
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
+import kotlinx.android.synthetic.main.google_sign_in_fragment.sign_google
+import kotlinx.android.synthetic.main.google_sign_in_fragment.sign_tv
 
 class GoogleSignInFragment : Fragment(), OnNextClickListener {
     override fun onClickNext(activity: IntroActivity) {
@@ -34,9 +33,6 @@ class GoogleSignInFragment : Fragment(), OnNextClickListener {
         fun newInstance() = GoogleSignInFragment()
     }
 
-    private lateinit var mGoogleSignInClient: GoogleSignInClient
-    private lateinit var mDriveServiceHelper: DriveServiceHelper
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,80 +44,41 @@ class GoogleSignInFragment : Fragment(), OnNextClickListener {
         view.findViewById<Button>(R.id.sign_google).setOnClickListener {
             signIn()
         }
-
-        view.findViewById<Button>(R.id.search).setOnClickListener {
-            mDriveServiceHelper.queryFiles(null)
-                .addOnSuccessListener { googleDriveFileHolders ->
-                    val gson = Gson()
-                    Log.d(TAG, "onSuccess: " + gson.toJson(googleDriveFileHolders))
-                }
-                .addOnFailureListener { e -> Log.d(TAG, "onFailure: " + e.message) }
-        }
-
-        view.findViewById<Button>(R.id.create_folder).setOnClickListener {
-            mDriveServiceHelper.createFolder("folderName", null)
-                .addOnSuccessListener { googleDriveFileHolder ->
-                    val gson = Gson()
-                    Log.d(TAG, "onSuccess: " + gson.toJson(googleDriveFileHolder))
-                }
-                .addOnFailureListener { e -> Log.d(TAG, "onFailure: " + e.message) }
-        }
-
-        view.findViewById<Button>(R.id.upload_file).setOnClickListener {
-            val file = File(activity!!.filesDir, "fileNameTemp.txt")
-            file.createNewFile()
-            file.writeText("Test text 1")
-            mDriveServiceHelper.uploadFile(file, "text/plain", "1H-A9PnH5nBE-bXHoayNNZ1Ovq87bLLFT")
-                .addOnSuccessListener { googleDriveFileHolder ->
-                    val gson = Gson()
-                    Log.d(TAG, "onSuccess: " + gson.toJson(googleDriveFileHolder))
-                }
-                .addOnFailureListener { e -> Log.d(TAG, "onFailure: " + e.message) }
-        }
-
         return view
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when (requestCode) {
-            REQUEST_CODE_SIGN_IN -> if (resultCode == Activity.RESULT_OK && data != null) {
-                handleSignInResult(data)
-            }
-        }
         super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
     }
 
     private fun signIn() {
-        mGoogleSignInClient = buildGoogleSignInClient()
-        startActivityForResult(
-            mGoogleSignInClient.signInIntent,
-            REQUEST_CODE_SIGN_IN
-        )
-    }
-
-    private fun buildGoogleSignInClient(): GoogleSignInClient {
-        val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestScopes(SCOPE_FILE)
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
-        return GoogleSignIn.getClient(activity!!, signInOptions)
+
+        val mGoogleSignInClient = GoogleSignIn.getClient(activity as Activity, gso);
+        val signInIntent = mGoogleSignInClient.signInIntent
+        startActivityForResult(signInIntent, REQUEST_CODE_SIGN_IN)
     }
 
-    private fun handleSignInResult(result: Intent) {
-        GoogleSignIn.getSignedInAccountFromIntent(result)
-            .addOnSuccessListener { googleSignInAccount ->
-                Log.d(TAG, "Signed in as " + googleSignInAccount.email!!)
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
 
-                mDriveServiceHelper = DriveServiceHelper(
-                    getGoogleDriveService(
-                        activity,
-                        googleSignInAccount,
-                        APP_NAME
-                    )
-                )
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            updateUI(account)
+        } catch (e: ApiException) {
+            updateUI(null)
+        }
+    }
 
-                Log.d(TAG, "handleSignInResult: $mDriveServiceHelper")
-            }
-            .addOnFailureListener { e -> Log.e(TAG, "Unable to sign in.", e) }
+    private fun updateUI(data: GoogleSignInAccount?) {
+        Log.d(TAG, "updateUI: ${data?.displayName}")
+        sign_google.visibility = View.GONE
+        sign_tv.visibility = View.VISIBLE
+        sign_tv.text = "You signed as ${data?.displayName}"
     }
 }

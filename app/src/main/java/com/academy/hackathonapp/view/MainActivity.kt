@@ -1,5 +1,6 @@
 package com.academy.hackathonapp.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -49,14 +50,24 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
                 true
 
             }
+            R.id.main_screen -> {
+                startActivity(Intent(this, MainActivity::class.java))
+                drawer.closeDrawer(GravityCompat.START)
+                return true
+            }
             else -> false
         }
     }
 
-    private fun showFragment(fragment: Fragment) {
+    fun showFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
+            .addToBackStack(null)
             .replace(linLay.id, fragment)
             .commit()
+    }
+
+    fun pop(){
+        supportFragmentManager.popBackStack()
     }
 }
