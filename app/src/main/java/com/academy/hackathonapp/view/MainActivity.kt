@@ -47,9 +47,8 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
                 showFragment(CategoryListFragment())
                 drawer.closeDrawer(GravityCompat.START)
                 true
+
             }
-
-
             else -> false
         }
     }
