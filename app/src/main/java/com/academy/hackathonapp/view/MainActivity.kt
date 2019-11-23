@@ -11,11 +11,12 @@ import androidx.lifecycle.ViewModelProviders
 import com.academy.hackathonapp.R
 import com.academy.hackathonapp.category.CategoryListFragment
 import com.academy.hackathonapp.mvvm.viewModel.ActivityViewModel
+import com.academy.hackathonapp.view.settings.SettingsFragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var activityViewModel: ActivityViewModel
 
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         setContentView(com.academy.hackathonapp.R.layout.activity_main)
 
         activityViewModel = ViewModelProviders.of(this).get(ActivityViewModel::class.java)
-        supportFragmentManager.beginTransaction().replace(linLay.id,MainFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(linLay.id, MainFragment()).commit()
 
         drawer.closeDrawer(GravityCompat.START)
         nav_view.setNavigationItemSelectedListener(this)
@@ -32,12 +33,12 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(com.academy.hackathonapp.R.menu.main_menu,menu)
+        menuInflater.inflate(com.academy.hackathonapp.R.menu.main_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (drawer.isDrawerOpen(GravityCompat.START))drawer.closeDrawer(GravityCompat.START)
+        if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START)
         else drawer.openDrawer(GravityCompat.START)
         return super.onOptionsItemSelected(item)
     }
@@ -55,6 +56,11 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
                 drawer.closeDrawer(GravityCompat.START)
                 return true
             }
+            R.id.settings -> {
+                showFragment(SettingsFragment())
+                drawer.closeDrawer(GravityCompat.START)
+                return true
+            }
             else -> false
         }
     }
@@ -67,7 +73,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
             .commit()
     }
 
-    fun pop(){
+    fun pop() {
         supportFragmentManager.popBackStack()
     }
 }

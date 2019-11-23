@@ -16,6 +16,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.drive.Drive.SCOPE_FILE
 import com.google.android.gms.tasks.Task
 import kotlinx.android.synthetic.main.google_sign_in_fragment.sign_google
 import kotlinx.android.synthetic.main.google_sign_in_fragment.sign_tv
@@ -57,6 +58,7 @@ class GoogleSignInFragment : Fragment(), OnNextClickListener {
 
     private fun signIn() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestScopes(SCOPE_FILE)
             .requestEmail()
             .build()
 
