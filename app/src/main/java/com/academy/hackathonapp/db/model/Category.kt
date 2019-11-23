@@ -13,5 +13,5 @@ data class Category(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     var categoryName: String = "",
-    @DrawableRes var img: Int = R.drawable.pacman
+    @DrawableRes val img: Int = R.drawable.pacman
 ) : Parcelable
