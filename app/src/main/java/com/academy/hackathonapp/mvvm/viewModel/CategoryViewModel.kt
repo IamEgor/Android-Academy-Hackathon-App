@@ -26,6 +26,14 @@ class CategoryViewModel(private var categoryRepository: CategoryRepository) : Vi
 
     }
 
+    fun addCategory(category: Category) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) { categoryRepository.addCategory(category) }
+
+        }
+
+    }
+
     class CategoryViewModelFactory(
         private val categoryRepository: CategoryRepository
 
