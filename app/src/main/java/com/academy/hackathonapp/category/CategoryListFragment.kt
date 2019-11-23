@@ -20,6 +20,9 @@ class CategoryListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
         viewModel = ViewModelProviders.of(
             this,
             CategoryViewModel.CategoryViewModelFactory(
