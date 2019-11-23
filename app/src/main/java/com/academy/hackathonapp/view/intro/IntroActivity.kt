@@ -13,28 +13,8 @@ class IntroActivity : AppIntro() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        checkForFirstLoading()
         setupIntro()
     }
-//
-//    private fun checkForFirstLoading() {
-//        isFirstLoading = Prefs.getBoolean("is_first_launch", false)
-//        if (isFirstLoading) {
-//            GlobalScope.launch(Dispatchers.IO) {
-//                DataStorage.categoryRepository.addCategories(getDefaultCategories())
-//
-//            }
-//        }
-//    }
-//
-//    private fun getDefaultCategories(): List<Category> {
-//        return listOf(
-//            Category(1, "Food and Drinks"),
-//            Category(2, "Health"),
-//            Category(3, "Shopping"),
-//            Category(4, "Utilities")
-//        )
-//    }
 
     private fun setupIntro() {
         showSkipButton(false)
@@ -57,6 +37,6 @@ class IntroActivity : AppIntro() {
 
     override fun onPause() {
         super.onPause()
-        finish()
+//        finish()
     }
 }

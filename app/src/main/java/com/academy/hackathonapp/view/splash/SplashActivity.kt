@@ -44,7 +44,6 @@ class SplashActivity : AppCompatActivity() {
         if (isFirstLoading) {
             Prefs.putBoolean("is_first_launch", false)
             Log.d(TAG, "checkForFirstLoading: +++")
-//            startActivity(Intent(this, IntroActivity::class.java))
             viewModel.doMagic()
         } else {
             finish()
@@ -54,6 +53,6 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        finish()
+//        finish()
     }
 }
