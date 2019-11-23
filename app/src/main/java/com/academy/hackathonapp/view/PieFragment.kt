@@ -31,14 +31,13 @@ class PieFragment:Fragment() {
         val spendings =ArrayList<PieEntry>()
 
 
-        spendings.add(PieEntry(945f,"2008"))
-        spendings.add(PieEntry(1044f, "2009"))
-        spendings.add(PieEntry(1100f, "2010"))
-        spendings.add(PieEntry(1200f, "2011"))
-        spendings.add(PieEntry(1300f, "2012"))
-        spendings.add(PieEntry(1400f, "2013"))
-        spendings.add(PieEntry(1500f, "2014"))
-        spendings.add(PieEntry(1600f, "2015"))
+        spendings.add(PieEntry(300f,"Июнь"))
+        spendings.add(PieEntry(400f, "Июль"))
+        spendings.add(PieEntry(500f, "Август"))
+        spendings.add(PieEntry(333f, "Сентябрь"))
+        spendings.add(PieEntry(350f, "Октябрь"))
+        spendings.add(PieEntry(460f, "Ноябрь"))
+        spendings.add(PieEntry(0F, "Декабрь"))
 
         val data =PieDataSet(spendings,"Our spending")
 
@@ -46,12 +45,11 @@ class PieFragment:Fragment() {
 
 
         //pieChartId.setUsePercentValues(true)
-        pieChartId.setEntryLabelTextSize(20F)
-
+        pieChartId.setEntryLabelTextSize(15F)
         pieChartId.data = datapie
         //pieChartId.clearValues()
         data.colors = ColorTemplate.createColors(ColorTemplate.COLORFUL_COLORS)
-        pieChartId.animateXY(5000,5000)
+        pieChartId.animateXY(7000,7000)
 
     }
 
