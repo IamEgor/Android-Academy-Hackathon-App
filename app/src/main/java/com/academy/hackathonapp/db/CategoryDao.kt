@@ -9,7 +9,7 @@ import com.academy.hackathonapp.db.model.Category
 @Dao
 interface CategoryDao {
 
-    @Query("SELECT * FROM Category ORDER BY categoryName DESC")
+    @Query("SELECT * FROM Category ORDER BY categoryName ASC")
     fun getAll(): List<Category>
 
     @Query("SELECT categoryName FROM Category ORDER BY categoryName DESC")

@@ -11,5 +11,8 @@ class Currency(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     var name: String = "",
-    var curID: Long = 0
-) : Parcelable
+    var curID: Long = 0,
+    var scale: Int = 0,
+    var curCode: String = ""
+
+    ) : Parcelable
