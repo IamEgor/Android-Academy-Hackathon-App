@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.academy.hackathonapp.R
-import com.example.myapplication.data.Category
+import com.academy.hackathonapp.db.model.Category
 
 class CategoryAdapter(var categories: List<Category>) :
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {

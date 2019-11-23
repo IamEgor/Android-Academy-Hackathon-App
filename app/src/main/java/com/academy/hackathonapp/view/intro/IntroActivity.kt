@@ -2,6 +2,7 @@ package com.academy.hackathonapp.view.intro
 
 import android.content.Intent
 import android.os.Bundle
+import com.academy.hackathonapp.R
 import com.academy.hackathonapp.db.model.Category
 import com.academy.hackathonapp.dependency.DataStorage
 import com.academy.hackathonapp.view.MainActivity
@@ -35,10 +36,10 @@ class IntroActivity : AppIntro() {
 
     private fun getDefaultCategories(): List<Category> {
         return listOf(
-            Category(1, "Food and Drinks"),
-            Category(2, "Health"),
-            Category(3, "Shopping"),
-            Category(4, "Utilities")
+            Category(categoryName = "Shopping", img = R.drawable.shopping),
+            Category(categoryName = "Food & Drinks", img = R.drawable.meal),
+            Category(categoryName = "Transport", img = R.drawable.transport),
+            Category(categoryName = "Utilities", img = R.drawable.utilities)
         )
     }
 
