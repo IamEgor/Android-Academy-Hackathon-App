@@ -10,7 +10,6 @@ class ActivityViewModel(
 
     var api: Api = NetworkService.retrofitService()
 
-
     val simpleLiveData = MutableLiveData<Event<Any>>()
 
     fun getUsers() {
@@ -18,6 +17,4 @@ class ActivityViewModel(
             api.getUsdToday()
         }
     }
-
-
-        }
+}

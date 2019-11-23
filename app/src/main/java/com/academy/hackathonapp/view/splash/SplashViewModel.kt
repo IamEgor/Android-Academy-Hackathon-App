@@ -35,7 +35,6 @@ class SplashViewModel : BaseViewModel() {
         )
 
         viewModelScope.launch(Dispatchers.IO) {
-            delay(2000)
             DataStorage.createCurrencyRepository().saveCurrencyList(CurrencyMapper().map(curs))
         }
         viewModelScope.launch(Dispatchers.IO) {
@@ -48,7 +47,8 @@ class SplashViewModel : BaseViewModel() {
                     Category(categoryName = "Utilities", img = drawable.utilities)
                 )
             )
+            delay(5000)
+            data.postValue(Event(Status.SUCCESS, null, null))
         }
-        data.postValue(Event(Status.SUCCESS, null, null))
     }
 }
