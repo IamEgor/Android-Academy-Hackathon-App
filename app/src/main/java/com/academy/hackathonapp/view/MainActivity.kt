@@ -1,6 +1,5 @@
 package com.academy.hackathonapp.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -51,7 +50,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
 
             }
             R.id.main_screen -> {
-                startActivity(Intent(this, MainActivity::class.java))
+                showFragment(PieFragment())
                 drawer.closeDrawer(GravityCompat.START)
                 return true
             }
