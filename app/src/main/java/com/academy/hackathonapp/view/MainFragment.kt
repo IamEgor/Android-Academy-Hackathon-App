@@ -32,7 +32,7 @@ class MainFragment: Fragment() {
                   fragmentManager?.beginTransaction()?.replace(layout_container.id,PieFragment())?.commit()
                }
                StateChart.ListChart->{
-                   fragmentManager?.beginTransaction()?.replace(layout_container.id,ListFragment())?.commit()
+                   fragmentManager?.beginTransaction()?.replace(layout_container.id,SpendingListFragment())?.commit()
                }
 
                StateChart.ToAdd->{
