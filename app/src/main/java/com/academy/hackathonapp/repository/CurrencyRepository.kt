@@ -12,4 +12,8 @@ class CurrencyRepository(private val currencyDao: CurrencyDao) {
     fun saveCurrencyList(currenciesList: List<Currency>) {
         return currencyDao.insertAll(currenciesList)
     }
+
+    fun getByName(name: String): Currency {
+        return currencyDao.getCurrencyByName(name)
+    }
 }

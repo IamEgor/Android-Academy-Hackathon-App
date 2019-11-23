@@ -15,6 +15,9 @@ interface CategoryDao {
     @Query("SELECT categoryName FROM Category ORDER BY categoryName DESC")
     fun getAllNames(): List<String>
 
+    @Query("SELECT * FROM Category where categoryName = :categoryName")
+    fun getByName(categoryName: String): Category
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(category: Category)
 

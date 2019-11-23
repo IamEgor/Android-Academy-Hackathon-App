@@ -36,7 +36,7 @@ class MainFragment: Fragment() {
                }
 
                StateChart.ToAdd->{
-                    fragmentManager?.beginTransaction()?.replace(layout_container.id,AddingSpendingFragment())?.commit()
+                    fragmentManager?.beginTransaction()?.replace(layout_container.id,AddNewItemFragment())?.commit()
                }
             }
         })
