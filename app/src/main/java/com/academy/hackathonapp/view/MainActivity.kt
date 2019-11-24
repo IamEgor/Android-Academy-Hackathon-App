@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.categories -> {
-                showFragment(CategoryListFragment(), false)
+                showFragment(CategoryListFragment(), true)
                 drawer.closeDrawer(GravityCompat.START)
                 true
 
