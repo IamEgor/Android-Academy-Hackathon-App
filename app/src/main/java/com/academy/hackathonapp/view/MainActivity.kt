@@ -44,13 +44,13 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.categories -> {
-                showFragment(CategoryListFragment())
+                showFragment(CategoryListFragment(), false)
                 drawer.closeDrawer(GravityCompat.START)
                 true
 
             }
             R.id.main_screen -> {
-                showFragment(PieFragment())
+                showFragment(MainFragment(), false)
                 drawer.closeDrawer(GravityCompat.START)
                 return true
             }
@@ -58,10 +58,12 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         }
     }
 
-    fun showFragment(fragment: Fragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .addToBackStack(null)
+    fun showFragment(fragment: Fragment, addToBackStack: Boolean) {
+        val transaction = supportFragmentManager.beginTransaction()
+        if (addToBackStack) {
+            transaction.addToBackStack(null)
+        }
+        transaction
             .replace(linLay.id, fragment)
             .commit()
     }

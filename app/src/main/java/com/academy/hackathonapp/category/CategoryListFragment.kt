@@ -51,7 +51,7 @@ class CategoryListFragment : Fragment() {
         }
         val activity = activity as MainActivity
         add_category.setOnClickListener {
-            activity.showFragment(AddCategoryFragment())
+            activity.showFragment(AddCategoryFragment(), true)
         }
     }
 
